@@ -22,7 +22,6 @@
         <TextField fx:id="tfLetterName" promptText="Name"/>
         <TextField fx:id="tfLetterCountry" promptText="Country"/>
         <Button text="Send Letter" onAction="#onSendLetterClick"/>
-        <Label fx:id="label"/>
     </VBox>
 
     <VBox alignment="center" spacing="5"
