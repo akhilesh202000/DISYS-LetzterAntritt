@@ -32,13 +32,14 @@ public class PostalServiceUIController {
         tfLetterCountry.setText("");
     }
 
+    @FXML
     public void onSendPackageClick() {
         String tfName = tfPackageName.getText();
         String tfWeight = tfPackageWeight.getText();
         processInput("packages", tfWeight, tfName);
 
-        tfLetterName.setText("");
-        tfLetterCountry.setText("");
+        tfPackageName.setText("");
+        tfPackageWeight.setText("");
     }
 
     public void onRefreshClick(ActionEvent actionEvent) {

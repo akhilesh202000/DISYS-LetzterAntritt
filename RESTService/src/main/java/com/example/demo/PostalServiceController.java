@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 
 @RestController
@@ -14,18 +15,19 @@ public class PostalServiceController {
 
     private ArrayList<Letter> letters = new ArrayList<>();
     private ArrayList<Package> packages = new ArrayList<>();
+    Connection conn = DBConnectionService.connect();
 
     @PostMapping(value = "/letters/{country}/{name}", produces = "application/json")
     public Letter addLetter(@PathVariable String country, @PathVariable String name) {
         Letter letter = new Letter(name, country);
-        letters.add(letter);
+        DBConnectionService.insertLetter(conn, letter);
         return letter;
     }
 
     @PostMapping(value = "/packages/{weight}/{name}", produces = "application/json")
     public Package addPackage(@PathVariable float weight, @PathVariable String name) {
         Package p = new Package(name, weight);
-        packages.add(p);
+        DBConnectionService.insertPackage(conn, p);
         return p;
     }
 
