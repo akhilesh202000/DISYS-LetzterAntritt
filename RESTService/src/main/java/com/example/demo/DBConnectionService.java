@@ -2,11 +2,9 @@ package com.example.demo;
 
 import com.example.demo.dto.Letter;
 import com.example.demo.dto.Package;
+import com.example.demo.dto.TableData;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.UUID;
 
 public class DBConnectionService {
@@ -44,6 +42,23 @@ public class DBConnectionService {
             ps.setFloat(2, p.getWeight());
             ps.setObject(3, UUID.randomUUID());
             ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void getTableData(Connection conn) {
+        TableData td = new TableData();
+
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM letters;");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                td.letters.add(new Letter(rs.getString("name"), rs.getString("country")));
+            }
+            for(Letter l : td.letters) {
+                System.out.println(l);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -31,14 +31,9 @@ public class PostalServiceController {
         return p;
     }
 
-    @GetMapping("/letters")
-    public ArrayList<Letter> getLetters() {
-        return letters;
-    }
-
-    @GetMapping("/packages")
-    public ArrayList<Package> getPackages() {
-        return packages;
+    @GetMapping("/status")
+    public void getStatus() {
+        DBConnectionService.getTableData(conn);
     }
 
     //TODO:GET STATUS
