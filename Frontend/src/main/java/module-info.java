@@ -6,7 +6,9 @@ module com.example.frontend {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.net.http;
+    requires com.google.gson;
+    requires jdbc;
 
-    opens com.example.frontend to javafx.fxml;
-    exports com.example.frontend;
+    opens org.frontend to javafx.fxml;
+    exports org.frontend;
 }

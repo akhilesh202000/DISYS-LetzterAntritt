@@ -1,9 +1,7 @@
-package com.example.demo.dto;
+package org.jdbc.dto;
 
 import lombok.Data;
 import lombok.NonNull;
-
-import java.util.UUID;
 
 @Data
 public class Letter {

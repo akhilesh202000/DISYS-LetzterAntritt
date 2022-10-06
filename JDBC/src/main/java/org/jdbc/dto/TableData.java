@@ -1,6 +1,4 @@
-package com.example.demo.dto;
-
-import lombok.AllArgsConstructor;
+package org.jdbc.dto;
 
 import java.util.ArrayList;
 
@@ -13,4 +11,7 @@ public class TableData {
         this.letters = new ArrayList<Letter>();
         this.packages = new ArrayList<Package>();
     }
+
+
+
 }

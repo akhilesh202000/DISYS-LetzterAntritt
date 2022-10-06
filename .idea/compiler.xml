@@ -9,12 +9,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Frontend" />
         <module name="demo" />
+        <module name="JDBC" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="demo" target="17" />
-      <module name="Frontend" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

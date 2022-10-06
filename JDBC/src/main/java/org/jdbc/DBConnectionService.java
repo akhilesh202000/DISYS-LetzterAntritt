@@ -1,8 +1,7 @@
-package com.example.demo;
+package org.jdbc;
 
-import com.example.demo.dto.Letter;
-import com.example.demo.dto.Package;
-import com.example.demo.dto.TableData;
+import org.jdbc.dto.*;
+import org.jdbc.dto.Package;
 
 import java.sql.*;
 import java.util.UUID;
@@ -47,20 +46,21 @@ public class DBConnectionService {
         }
     }
 
-    public static void getTableData(Connection conn) {
+    public static TableData getTableData(Connection conn) {
         TableData td = new TableData();
 
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM letters;");
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
-                td.letters.add(new Letter(rs.getString("name"), rs.getString("country")));
+            ResultSet rsLetters = conn.prepareStatement("SELECT * FROM letters;").executeQuery();
+            while(rsLetters.next()) {
+                td.letters.add(new Letter(rsLetters.getString("name"), rsLetters.getString("country")));
             }
-            for(Letter l : td.letters) {
-                System.out.println(l);
+            ResultSet rsPackages = conn.prepareStatement("SELECT * FROM packages;").executeQuery();
+            while(rsPackages.next()) {
+                td.packages.add(new Package(rsPackages.getString("name"), rsPackages.getFloat("weight")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return td;
     }
 }

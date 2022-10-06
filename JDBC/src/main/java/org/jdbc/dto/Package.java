@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package org.jdbc.dto;
 
 import lombok.Data;
 import lombok.NonNull;

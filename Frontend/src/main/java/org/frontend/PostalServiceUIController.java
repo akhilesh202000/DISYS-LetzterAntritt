@@ -1,8 +1,11 @@
-package com.example.frontend;
+package org.frontend;
 
+import com.google.gson.Gson;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.jdbc.dto.TableData;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -15,6 +18,8 @@ public class PostalServiceUIController {
 
     @FXML private TextField tfPackageName;
     @FXML private TextField tfPackageWeight;
+
+    @FXML private Label statuses;
 
     private static final String API = "http://localhost:8080";
 
@@ -49,10 +54,16 @@ public class PostalServiceUIController {
             HttpResponse<String> response = HttpClient.newBuilder()
                     .build()
                     .send(request, HttpResponse.BodyHandlers.ofString());
+
+            statuses.setText(formatStatuses(response.body()));
+
         } catch (Exception e) {
-            System.out.println("Request failed");
             e.printStackTrace();
         }
+    }
+
+    private TableData formatStatuses(String body) {
+        return new Gson().fromJson(body, TableData.class);
     }
 
     private void processInput(String type, String countryOrWeight, String name) {
