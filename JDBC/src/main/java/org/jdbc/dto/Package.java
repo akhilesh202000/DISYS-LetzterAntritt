@@ -3,9 +3,16 @@ package org.jdbc.dto;
 import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class Package {
+import java.util.UUID;
 
-    @NonNull private String name;
-    @NonNull private float weight;
+@Data
+public class Package extends Delivery {
+
+    @NonNull float weight;
+
+
+    public Package(@NonNull String name, @NonNull float weight, @NonNull UUID uuid, @NonNull Status status) {
+        super(name, uuid, status);
+        this.weight = weight;
+    }
 }

@@ -1,12 +1,17 @@
 package org.jdbc.dto;
 
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
+import java.util.UUID;
 
 @Data
-public class Letter {
+public class Letter extends Delivery {
+    @NonNull String country;
 
-    @NonNull private String name;
-    @NonNull private String country;
 
+    public Letter(@NonNull String name, @NonNull String country, @NonNull UUID uuid, @NonNull Status status) {
+        super(name, uuid, status);
+        this.country = country;
+    }
 }

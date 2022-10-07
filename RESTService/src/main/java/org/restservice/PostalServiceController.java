@@ -4,10 +4,12 @@ package org.restservice;
 import org.jdbc.DBConnectionService;
 import org.jdbc.dto.Letter;
 import org.jdbc.dto.Package;
+import org.jdbc.dto.Status;
 import org.jdbc.dto.TableData;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Connection;
+import java.util.UUID;
 
 @RestController
 public class PostalServiceController {
@@ -16,14 +18,14 @@ public class PostalServiceController {
 
     @PostMapping(value = "/letters/{country}/{name}", produces = "application/json")
     public Letter addLetter(@PathVariable String country, @PathVariable String name) {
-        Letter letter = new Letter(name, country);
+        Letter letter = new Letter(name, country, UUID.randomUUID(), Status.WAITING);
         DBConnectionService.insertLetter(conn, letter);
         return letter;
     }
 
     @PostMapping(value = "/packages/{weight}/{name}", produces = "application/json")
     public Package addPackage(@PathVariable float weight, @PathVariable String name) {
-        Package p = new Package(name, weight);
+        Package p = new Package(name, weight, UUID.randomUUID(), Status.WAITING);
         DBConnectionService.insertPackage(conn, p);
         return p;
     }

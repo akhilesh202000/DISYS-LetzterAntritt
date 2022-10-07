@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.jdbc.dto.TableData;
 
+import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -62,8 +63,9 @@ public class PostalServiceUIController {
         }
     }
 
-    private TableData formatStatuses(String body) {
-        return new Gson().fromJson(body, TableData.class);
+    public String formatStatuses(String body) {
+        TableData td = new Gson().fromJson(body, TableData.class);
+        return td.toString();
     }
 
     private void processInput(String type, String countryOrWeight, String name) {
