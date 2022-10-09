@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane fx:id="gridpane"
+          fx:controller="org.postalservice.frontend.PostalServiceUIController" xmlns:fx="http://javafx.com/fxml"
+          prefHeight="200" prefWidth="320"
+          alignment="center" hgap="10" vgap="10">
+
+    <VBox alignment="center" spacing="5"
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnSpan="1" GridPane.rowSpan="1">
+        <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+        </padding>
+        <TextField fx:id="tfLetterName" promptText="Name"/>
+        <TextField fx:id="tfLetterCountry" promptText="Country"/>
+        <Button text="Send Letter" onAction="#onSendLetterClick"/>
+    </VBox>
+
+    <VBox alignment="center" spacing="5"
+          GridPane.columnIndex="0" GridPane.rowIndex="1"
+          GridPane.columnSpan="1" GridPane.rowSpan="1">
+        <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+        </padding>
+        <TextField fx:id="tfPackageName" promptText="Name"/>
+        <TextField fx:id="tfPackageWeight" promptText="Weight"/>
+        <Button text="Send Package" onAction="#onSendPackageClick"/>
+    </VBox>
+
+    <VBox spacing="5"
+          GridPane.columnIndex="1" GridPane.rowIndex="0"
+          GridPane.columnSpan="1" GridPane.rowSpan="2">
+        <Label textAlignment="CENTER" text="Status"/>
+        <Label fx:id="statuses"/>
+        <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+        </padding>
+        <Button text="Refresh" onAction="#onRefreshClick"/>
+    </VBox>
+
+</GridPane>

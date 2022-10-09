@@ -9,6 +9,6 @@ module com.example.frontend {
     requires com.google.gson;
     requires jdbc;
 
-    opens org.frontend to javafx.fxml;
-    exports org.frontend;
+    opens org.postalservice.frontend to javafx.fxml;
+    exports org.postalservice.frontend;
 }

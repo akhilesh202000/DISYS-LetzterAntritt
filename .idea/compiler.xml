@@ -7,15 +7,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="JDBC" />
+        <module name="packageservice" />
+        <module name="queueworkers" />
         <module name="Frontend" />
         <module name="demo" />
-        <module name="JDBC" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="LetterService" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="LetterService" options="-parameters" />
       <module name="demo" options="-parameters" />
+      <module name="packageservice" options="-parameters" />
+      <module name="queueworkers" options="-parameters" />
     </option>
   </component>
 </project>

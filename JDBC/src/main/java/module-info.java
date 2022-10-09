@@ -2,7 +2,7 @@ module jdbc {
     requires java.sql;
     requires lombok;
     exports org.jdbc;
-    exports org.jdbc.dto;
+    exports org.jdbc.entities;
 
-    opens org.jdbc.dto to com.google.gson;
+    opens org.jdbc.entities to com.google.gson;
 }

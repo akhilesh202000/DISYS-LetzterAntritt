@@ -1,7 +1,9 @@
 package org.jdbc;
 
-import org.jdbc.dto.*;
-import org.jdbc.dto.Package;
+import org.jdbc.entities.Letter;
+import org.jdbc.entities.Package;
+import org.jdbc.entities.Status;
+import org.jdbc.entities.TableData;
 
 import java.sql.*;
 import java.util.UUID;
@@ -44,6 +46,58 @@ public class DBConnectionService {
             ps.setString(4, p.getStatus().toString());
             ps.execute();
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Letter getLetterById(Connection conn, UUID uuid) {
+        try{
+            String query = "SELECT * FROM letters WHERE uuid = ?;";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setObject(1, uuid);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                return new Letter(
+                        rs.getString(1),
+                        rs.getString(2),
+                        (UUID) rs.getObject(3),
+                        Status.valueOf(rs.getString(4))
+                );
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Package getPackageById(Connection conn, UUID uuid) {
+        try{
+            String query = "SELECT * FROM packages WHERE uuid = ?;";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setObject(1, uuid);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                return new Package(
+                        rs.getString(1),
+                        rs.getFloat(2),
+                        (UUID) rs.getObject(3),
+                        Status.valueOf(rs.getString(4))
+                );
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void updateStatus(Connection conn, String tableName, Status status, UUID uuid) {
+
+        try{
+            String query = String.format("UPDATE %s SET status = '%s' WHERE uuid = ?;", tableName, status.toString());
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setObject(1, uuid);
+            ps.execute();
+        } catch(SQLException e) {
             e.printStackTrace();
         }
     }
