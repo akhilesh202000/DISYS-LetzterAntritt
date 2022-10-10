@@ -5,7 +5,7 @@ import org.jdbc.DBConnectionService;
 import org.jdbc.entities.Letter;
 import org.jdbc.entities.Package;
 import org.jdbc.entities.Status;
-import org.jdbc.entities.TableData;
+import org.jdbc.entities.DeliveryData;
 import org.postalservice.restapi.queue.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,7 +52,7 @@ public class PostalServiceController {
 //    }
 
     @GetMapping(value = "/status", produces = "application/json")
-    public TableData getStatus() {
+    public DeliveryData getStatus() {
 
         return DBConnectionService.getTableData(conn);
     }

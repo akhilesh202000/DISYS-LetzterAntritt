@@ -3,7 +3,7 @@ package org.jdbc;
 import org.jdbc.entities.Letter;
 import org.jdbc.entities.Package;
 import org.jdbc.entities.Status;
-import org.jdbc.entities.TableData;
+import org.jdbc.entities.DeliveryData;
 
 import java.sql.*;
 import java.util.UUID;
@@ -102,8 +102,8 @@ public class DBConnectionService {
         }
     }
 
-    public static TableData getTableData(Connection conn) {
-        TableData td = new TableData();
+    public static DeliveryData getTableData(Connection conn) {
+        DeliveryData td = new DeliveryData();
 
         try {
             ResultSet rsLetters = conn.prepareStatement("SELECT * FROM letters;").executeQuery();

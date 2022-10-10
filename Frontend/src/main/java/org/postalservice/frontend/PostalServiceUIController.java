@@ -5,7 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.jdbc.entities.TableData;
+import org.jdbc.entities.DeliveryData;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -66,7 +66,7 @@ public class PostalServiceUIController {
     }
 
     public String formatStatuses(String body) {
-        TableData td = new Gson().fromJson(body, TableData.class);
+        DeliveryData td = new Gson().fromJson(body, DeliveryData.class);
         return td.toString();
     }
 
